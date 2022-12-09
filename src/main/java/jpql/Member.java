@@ -37,4 +37,14 @@ public class Member {
     public void setAge(int age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                //", team=" + team + //toString만들때 이거 team에서도 toString 타고 여기서도 타서 양방향 무한루프 되면 안된다.
+                '}';
+    }
 }
