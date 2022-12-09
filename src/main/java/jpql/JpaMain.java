@@ -20,6 +20,7 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("teamA");
             member.setAge(10);
+            member.setType(MemberType.ADMIN);
 
             member.setTeam(team);
 
@@ -28,11 +29,18 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select mm.age, mm.username from (select m.age, m.username from Member m) as mm";
-            List<Member> result = em.createQuery(query, Member.class)
+            String query = "select m.username, 'HELLO', true From Member m " +
+                    "where m.age between 0 and 10";
+
+            List<Object[]> result = em.createQuery(query)
+                    .setParameter("userType", MemberType.ADMIN)
                     .getResultList();
 
-            System.out.println("result = " + result.size());
+            for (Object[] objects : result) {
+                System.out.println("objects = " + objects[0]);
+                System.out.println("objects = " + objects[1]);
+                System.out.println("objects = " + objects[2]);
+            }
 
             tx.commit();
         }catch(Exception e){
