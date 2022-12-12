@@ -54,7 +54,7 @@ public class JpaMain {
                 for(Member member : team.getMembers()){
                     System.out.println("-> member = " + member);
                 }
-            }
+            } 
             
             tx.commit();
         }catch(Exception e){
