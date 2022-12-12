@@ -3,6 +3,10 @@ package jpql;
 import javax.persistence.*;
 
 @Entity
+@NamedQuery(
+        name = "Member.findByUsername", //엔티티명.~~ 로 쓰는게 관례
+        query = "select m from Member m where m.username = :username"
+)
 public class Member {
 
     @Id @GeneratedValue
